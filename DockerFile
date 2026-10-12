@@ -18,6 +18,7 @@ WORKDIR /app
 
 # Create a non-root user
 RUN groupadd -r appgroup && useradd -r -g appgroup appuser
+RUN mkdir -p /app/uploads && chown appuser:appgroup /app/uploads
 
 # Copy the generated JAR file
 COPY --from=build --chown=appuser:appgroup /app/target/*.jar app.jar
